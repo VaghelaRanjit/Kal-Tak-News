@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:news_app/Pages/HomePage/Widgets/TrendingCard.dart';
+import 'package:news_app/Pages/NewsDetails/news_details.dart';
 
 import 'HomePage/Widgets/news_tile.dart';
 
@@ -44,6 +46,9 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     TrendingCard(
+                      onTap: () {
+                        Get.to(NewsDetails());
+                      },
                       ImgUrl:
                           "https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663",
                       time: "2 days ago",
@@ -53,6 +58,7 @@ class HomePage extends StatelessWidget {
                       author: "Ranjit Vaghela",
                     ),
                     TrendingCard(
+                      onTap: () {},
                       ImgUrl:
                           "https://images.bhaskarassets.com/webp/thumb/256x0/web2images/960/2025/07/01/3cd59192-128b-4762-88ea-cc0959f70374_1751280588558.jpg",
                       time: "2 days ago",
@@ -62,6 +68,7 @@ class HomePage extends StatelessWidget {
                       author: "Ranjit Vaghela",
                     ),
                     TrendingCard(
+                      onTap: () {},
                       ImgUrl:
                           "https://images.bhaskarassets.com/webp/thumb/512x0/web2images/960/2025/06/23/22_1750648215.jpg",
                       time: "2 days ago",
