@@ -12,7 +12,7 @@ class ArticlePage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8),
-          child: Column(
+          child: ListView(
             children: [
               SearchWidget(),
               SizedBox(height: 20),
