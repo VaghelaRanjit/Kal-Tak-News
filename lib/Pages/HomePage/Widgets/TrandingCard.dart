@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TrendingCard extends StatelessWidget {
+class TrandingCard extends StatelessWidget {
   final String ImgUrl;
   final String title;
   final String tag;
   final String time;
   final String author;
-
   final VoidCallback onTap;
-  const TrendingCard({
+
+  const TrandingCard({
     super.key,
     required this.ImgUrl,
     required this.title,
