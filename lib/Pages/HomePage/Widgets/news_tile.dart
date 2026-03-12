@@ -5,12 +5,15 @@ class NewsTile extends StatelessWidget {
   final String title;
   final String time;
   final String author;
+  final VoidCallback ontap;
+
   const NewsTile({
     super.key,
     required this.imgUrl,
     required this.title,
     required this.time,
     required this.author,
+    required this.ontap
   });
 
   @override
@@ -58,7 +61,7 @@ class NewsTile extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
                     SizedBox(width: 10),
-                    Text("$author"),
+                    Text("$author", style: TextStyle(fontSize: 13),maxLines: 1,),
                   ],
                 ),
                 SizedBox(height: 15),

@@ -67,12 +67,12 @@ class NewsController extends GetxController {
   RxList<NewsModel> tesla5News = <NewsModel>[].obs;
   RxList<NewsModel> businessNewsList = <NewsModel>[].obs;
   RxList<NewsModel> business5News = <NewsModel>[].obs;
-  RxBool isTrandingLoading = false.obs;
+  RxBool isTrendingLoading = false.obs;
   RxBool isNewsForULoading = false.obs;
   RxBool isTeslaLoading = false.obs;
   RxBool isAppleLoading = false.obs;
-  RxBool isBuisLoading = false.obs;
-  RxBool isSpeeking = false.obs;
+  RxBool isBoolLoading = false.obs;
+  RxBool isSpeaking = false.obs;
   FlutterTts flutterTts = FlutterTts();
 
   void onInit() async {
@@ -85,7 +85,7 @@ class NewsController extends GetxController {
   }
 
   Future<void> getTrandingNews() async {
-    isTrandingLoading.value = true;
+    isBoolLoading.value = true;
     var baseURL =
         "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=ea97c6bb67b040759084c3c20ea5e5cf";
     try {
@@ -104,7 +104,7 @@ class NewsController extends GetxController {
     } catch (ex) {
       print(ex);
     }
-    isTrandingLoading.value = false;
+    isBoolLoading.value = false;
   }
 
   Future<void> getNewsForYou() async {
@@ -123,7 +123,7 @@ class NewsController extends GetxController {
         }
         newsForYou5.value = newsForYouList.sublist(0, 5).obs;
       } else {
-        print("Something went Wrong in Tranding News");
+        print("Something went Wrong in Trending News");
       }
     } catch (ex) {
       print(ex);
@@ -137,9 +137,9 @@ class NewsController extends GetxController {
         "https://newsapi.org/v2/everything?q=apple&from=2024-01-21&to=2024-01-21&sortBy=popularity&apiKey=ea97c6bb67b040759084c3c20ea5e5cf";
     try {
       var response = await http.get(Uri.parse(baseURL));
-      print(response);
+     // print(response);
       if (response.statusCode == 200) {
-        print(response.body);
+     //   print(response.body);
         var body = jsonDecode(response.body);
         var articals = body["articles"];
         for (var news in articals) {
@@ -161,9 +161,9 @@ class NewsController extends GetxController {
         "https://newsapi.org/v2/everything?q=tesla&from=2023-12-22&sortBy=publishedAt&apiKey=ea97c6bb67b040759084c3c20ea5e5cf";
     try {
       var response = await http.get(Uri.parse(baseURL));
-      print(response);
+     // print(response);
       if (response.statusCode == 200) {
-        print(response.body);
+      //  print(response.body);
         var body = jsonDecode(response.body);
         var articals = body["articles"];
         for (var news in articals) {
@@ -180,14 +180,14 @@ class NewsController extends GetxController {
   }
 
   Future<void> getBusinessNews() async {
-    isBuisLoading.value = true;
+    isBoolLoading.value = true;
     var baseURL =
         "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=ea97c6bb67b040759084c3c20ea5e5cf";
     try {
       var response = await http.get(Uri.parse(baseURL));
-      print(response);
+   //   print(response);
       if (response.statusCode == 200) {
-        print(response.body);
+    //    print(response.body);
         var body = jsonDecode(response.body);
         var articals = body["articles"];
         for (var news in articals) {
@@ -200,7 +200,7 @@ class NewsController extends GetxController {
     } catch (ex) {
       print(ex);
     }
-    isBuisLoading.value = false;
+    isBoolLoading.value = false;
   }
 
   Future<void> searchNews(String search) async {
@@ -209,9 +209,9 @@ class NewsController extends GetxController {
         "https://newsapi.org/v2/everything?q=$search&apiKey=ea97c6bb67b040759084c3c20ea5e5cf";
     try {
       var response = await http.get(Uri.parse(baseURL));
-      print(response);
+    //  print(response);
       if (response.statusCode == 200) {
-        print(response.body);
+      //  print(response.body);
         var body = jsonDecode(response.body);
         var articals = body["articles"];
         newsForYouList.clear();
@@ -233,16 +233,16 @@ class NewsController extends GetxController {
   }
 
   Future<void> speak(String text) async {
-    isSpeeking.value = true;
+    isSpeaking.value = true;
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1);
     await flutterTts.setSpeechRate(0.5);
     await flutterTts.speak(text);
-    isSpeeking.value = false;
+    isSpeaking.value = false;
   }
 
   void stop() async {
     await flutterTts.stop();
-    isSpeeking.value = false;
+    isSpeaking.value = false;
   }
 }

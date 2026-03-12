@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Pages/HomePage/Widgets/news_tile.dart';
 import 'package:news_app/controller/news_controller.dart';
 
 import '../components/TrandingLoadingCard.dart';
@@ -77,11 +78,11 @@ class HomePage extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Obx(
-                    () => newsController.isTrandingLoading.value
+                    () => newsController.isTrendingLoading.value
                         ? const Row(
                             children: [
                               TrandingLoadingCard(),
-                              TrandingLoadingCard(),
+                             // TrandingLoadingCard(),
                             ],
                           )
                         : Row(
@@ -89,12 +90,14 @@ class HomePage extends StatelessWidget {
                                 .map(
                                   (e) => TrandingCard(
                                     onTap: () {
-                                      Get.to(NewsDetailsPage());
+                                      Get.to(NewsDetailsPage(
+                                        news: e,
+                                      ));
                                     },
                                     ImgUrl: e.urlToImage ?? '',
                                     title: e.title ?? 'No Title',
-                                    author: e.author ?? "Unknown",
-                                    tag: "Tranding no 1",
+                                    author: e.author ?? "Unknown" ,
+                                    tag: "Trending no 1",
                                     time: e.publishedAt ?? '',
                                   ),
                                 )
@@ -117,6 +120,26 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
+
+                Obx(
+                    () => newsController.isBoolLoading.value
+                    ? Center(child: CircularProgressIndicator())
+                    :  Column(
+                    children: newsController.newsForYouList
+                        .map(
+                          (e) => NewsTile(
+                            ontap: (){
+                              Get.to(NewsDetailsPage(news: e));
+                            },
+                            imgUrl: e.urlToImage ?? "Not found",
+                            title: e.title!,
+                            time: e.publishedAt!,
+                            author: e.author ?? "Unknown",
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
               ],
             ),
           ),

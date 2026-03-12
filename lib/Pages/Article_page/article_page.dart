@@ -22,7 +22,7 @@ class ArticlePage extends StatelessWidget {
                 title:
                     "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
                 time: "2 days ago",
-                author: "Ranjit",
+                author: "Ranjit", ontap: () {  },
               ),
               NewsTile(
                 imgUrl:
@@ -30,7 +30,7 @@ class ArticlePage extends StatelessWidget {
                 title:
                     "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
                 time: "2 days ago",
-                author: "Ranjit",
+                author: "Ranjit", ontap: () {  },
               ),
               NewsTile(
                 imgUrl:
@@ -38,7 +38,7 @@ class ArticlePage extends StatelessWidget {
                 title:
                     "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
                 time: "2 days ago",
-                author: "Ranjit",
+                author: "Ranjit", ontap: () {  },
               ),
             ],
           ),

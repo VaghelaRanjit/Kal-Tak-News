@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Model/news_model.dart';
 
 class NewsDetailsPage extends StatelessWidget {
-  const NewsDetailsPage({super.key});
+
+  final NewsModel news;
+   const NewsDetailsPage({super.key, required this.news});
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +52,7 @@ class NewsDetailsPage extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
-                            "https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663",
+                           news.urlToImage ?? "https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663",
                             height: 330,
                             fit: BoxFit.cover,
                           ),
@@ -56,15 +64,17 @@ class NewsDetailsPage extends StatelessWidget {
 
                 SizedBox(height: 15),
                 Text(
-                  "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
+                   news.title!,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10),
                 Row(
                   children: [
-                    Text(
-                      "2 Days ago",
-                      style: Theme.of(context).textTheme.labelSmall,
+                    Expanded(
+                      child: Text(
+                       '${news.author}     ${news.publishedAt}',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ),
                   ],
                 ),
@@ -74,7 +84,7 @@ class NewsDetailsPage extends StatelessWidget {
                     CircleAvatar(radius: 15, backgroundColor: Colors.yellow),
                     SizedBox(width: 10),
                     Text(
-                      "Ranjit Vaghela",
+                      news.author![0],
                       style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).colorScheme.secondaryContainer,
@@ -87,7 +97,7 @@ class NewsDetailsPage extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        "Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Its purpose is to permit a page layout to be designed, independently of the copy that will subsequently populate it, or to demonstrate various fonts of a typeface without meaningful text that could be distracting.",
+                         news.description!,
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(

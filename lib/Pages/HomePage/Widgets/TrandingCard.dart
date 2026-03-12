@@ -87,7 +87,13 @@ class TrandingCard extends StatelessWidget {
                   backgroundColor: Theme.of(context).colorScheme.primary,
                 ),
                 SizedBox(width: 10),
-                Text("$author"),
+                Expanded(
+                  child: Text(
+                    author,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
               ],
             ),
             SizedBox(height: 10),
