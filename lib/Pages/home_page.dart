@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app/Pages/HomePage/Widgets/news_tile.dart';
 import 'package:news_app/controller/news_controller.dart';
 
 import '../components/TrandingLoadingCard.dart';
@@ -117,6 +118,19 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
+
+                Column(
+                  children: newsController.newsForYouList
+                      .map(
+                        (e) => NewsTile(
+                          imgUrl: e.urlToImage ?? "Not found",
+                          title: e.title!,
+                          time: e.publishedAt!,
+                          author: e.author ?? "Unknown",
+                        ),
+                      )
+                      .toList(),
+                ),
               ],
             ),
           ),

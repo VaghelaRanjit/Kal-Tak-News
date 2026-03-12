@@ -123,7 +123,7 @@ class NewsController extends GetxController {
         }
         newsForYou5.value = newsForYouList.sublist(0, 5).obs;
       } else {
-        print("Something went Wrong in Tranding News");
+        print("Something went Wrong in Trending News");
       }
     } catch (ex) {
       print(ex);
