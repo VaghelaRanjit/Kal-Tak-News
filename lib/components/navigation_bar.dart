@@ -40,7 +40,7 @@ class BottomNavBar extends StatelessWidget {
                     ),
                     child: Center(
                       child: Icon(
-                        Icons.book,
+                        Icons.home,
                         size: 30,
                         color: controller.index.value == 0
                             ? Theme.of(context).colorScheme.onBackground
@@ -68,7 +68,7 @@ class BottomNavBar extends StatelessWidget {
                     ),
                     child: Center(
                       child: Icon(
-                        Icons.settings,
+                        Icons.newspaper,
                         size: 30,
                         color: controller.index.value == 1
                             ? Theme.of(context).colorScheme.onBackground
@@ -96,7 +96,7 @@ class BottomNavBar extends StatelessWidget {
                     ),
                     child: Center(
                       child: Icon(
-                        Icons.home,
+                        Icons.settings,
                         size: 30,
                         color: controller.index.value == 2
                             ? Theme.of(context).colorScheme.onBackground

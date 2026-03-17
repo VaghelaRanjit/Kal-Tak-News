@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Pages/Article_page/Widgets/search_widget.dart';
+import 'package:get/get.dart';
 
+import '../../controller/news_controller.dart';
 import '../HomePage/Widgets/news_tile.dart';
+import '../NewsDetails/news_details.dart';
+import 'Widgets/search_widget.dart';
 
-class ArticlePage extends StatelessWidget {
-  const ArticlePage({super.key});
+
+class ArticalPage extends StatelessWidget {
+  const ArticalPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    NewsController newsController = Get.put(NewsController());
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(10),
           child: ListView(
             children: [
               SearchWidget(),
               SizedBox(height: 20),
-              NewsTile(
-                imgUrl:
-                    'https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663',
-                title:
-                    "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
-                time: "2 days ago",
-                author: "Ranjit", ontap: () {  },
-              ),
-              NewsTile(
-                imgUrl:
-                    'https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663',
-                title:
-                    "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
-                time: "2 days ago",
-                author: "Ranjit", ontap: () {  },
-              ),
-              NewsTile(
-                imgUrl:
-                    'https://images.news9live.com/wp-content/uploads/2024/01/1-61.png?w=663',
-                title:
-                    "ભગવાન રામનો ઉપદેશ: સમસ્યાઓથી ડરશો નહીં, તેનો ઉકેલ શોધો:વનવાસ દરમિયાન પણ શ્રીરામ રાક્ષસોનો વધ કરીને ઋષિઓ અને સંતોના કષ્ટ દૂર કરી રહ્યા હતા",
-                time: "2 days ago",
-                author: "Ranjit", ontap: () {  },
-              ),
+              Obx(
+                    () => Column(
+                  children: newsController.newsForYouList
+                      .map(
+                        (e) => NewsTile(
+                      ontap: () {
+                        Get.to(NewsDetailsPage(news: e));
+                      },
+                      imageUrl: e.urlToImage ??
+                          "https://images.bhaskarassets.com/webp/thumb/512x0/web2images/521/2024/01/16/317_1705413514.jpg",
+                      title: e.title!,
+                      author: e.author ?? "Unknown",
+                      time: e.publishedAt!,
+                    ),
+                  )
+                      .toList(),
+                ),
+              )
             ],
           ),
         ),
