@@ -1,16 +1,49 @@
-# news_app
+# News App 📰
 
-A new Flutter project.
+A modern Flutter News Application built using GetX and News API.
 
-## Getting Started
+## Features ✨
+- Latest Headlines
+- Detailed News Screen
+- News Search
+- Text To Speech (TTS)
+- Category-wise News
+- Profile Page
+- Responsive UI
+- API Integration
+- State Management using GetX
 
-This project is a starting point for a Flutter application.
+## Tech Stack 🛠
+- Flutter
+- Dart
+- GetX
+- REST API
+- HTTP 
+- Flutter TTS
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots 📱
+<img width="300" height="650" alt="Home" src="https://github.com/user-attachments/assets/22e32a61-caac-41a9-8b81-7a0ce0722517" />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img width="300" height="650" alt="HomePage2" src="https://github.com/user-attachments/assets/176ef11e-3d74-4f70-8e92-1ebfb1eeb82f" />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="300" height="650" alt="SearchNews" src="https://github.com/user-attachments/assets/f8ccdf8b-0c51-4210-8f2d-fba6e7313553" />
+
+<img width="300" height="650" alt="SettingsPage" src="https://github.com/user-attachments/assets/3dd184ed-acb1-4f1e-b003-496de2bdbc60" />
+
+
+## Folder Structure 📂
+
+lib/
+ ├── models/
+ ├── views/
+ ├── controllers/
+ ├── services/
+ ├── widgets/
+ └── main.dart
+
+## Installation ⚡
+
+```bash
+git clone https://github.com/VaghelaRanjit/news_app.git
+flutter pub get
+flutter run
