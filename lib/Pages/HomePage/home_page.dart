@@ -1,13 +1,581 @@
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:news_app/Components/NewsTileLoading.dart';
+// import 'package:news_app/Components/TrandingLoadingCard.dart';
+//
+// import 'package:news_app/Pages/HomePage/Widgets/TrandingCard.dart';
+// import 'package:news_app/Pages/Profile/profile_page.dart';
+// import 'package:news_app/controller/news_controller.dart';
+//
+// import '../NewsDetails/news_details.dart';
+// import 'Widgets/news_tile.dart';
+//
+// class HomePage extends StatelessWidget {
+//   const HomePage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     NewsController newsController = Get.put(NewsController());
+//     return Scaffold(
+//
+//       body: Padding(
+//
+//         padding: const EdgeInsets.all(10),
+//         child: SingleChildScrollView(
+//
+//           //* Heading section **//
+//            child: Column(
+//             children: [
+//               const SizedBox(height: 40),
+//               Row(
+//                 // mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//
+//               const SizedBox(width: 100,),
+//                   const Text(
+//                     "HeadLineHub",
+//                     style: TextStyle(
+//                       fontSize: 25,
+//                       fontFamily: "Poppins",
+//                       fontWeight: FontWeight.w600,
+//                       letterSpacing: 1.5,
+//                     ),
+//                   ),
+//
+//                 const   SizedBox(width: 50),
+//                   InkWell(
+//                     onTap: () {
+//                       // Navigator.push(
+//                       //     context,
+//                       //     MaterialPageRoute(
+//                       //         builder: (context) => ProfilePage()));
+//
+//                  Get.toNamed('/profile');
+//                     },
+//                     child: Container(
+//                         width: 50,
+//                         height: 50,
+//                         decoration: BoxDecoration(
+//                           color: Theme.of(context).colorScheme.primaryContainer,
+//                           borderRadius: BorderRadius.circular(100),
+//                         ),
+//                         child: const Icon(Icons.person)),
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 40),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Hottest News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: Obx(
+//                     () => newsController.isTrandingLoading.value
+//                         ? const Row(
+//                             children: [
+//                               TrandingLoadingCard(),
+//                               TrandingLoadingCard(),
+//                               TrandingLoadingCard(),
+//                             ],
+//                           )
+//                         : Row(
+//                             children: newsController.trandingNewsList
+//                                 .map(
+//                                   (e) => TrandingCard(
+//                                     ontap: () {
+//                                       Get.to(NewsDetailsPage(
+//                                         news: e,
+//                                       ));
+//                                     },
+//                                     imageUrl: e.urlToImage!,
+//                                     title: e.title!,
+//                                     author: e.author ?? "Unknown",
+//                                     tag: "Trending no 1",
+//                                     time: e.publishedAt!,
+//                                   ),
+//                                 )
+//                                 .toList(),
+//                           ),
+//                   )),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "News For you",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                 () => newsController.isNewsForULoading.value
+//                     ? Column(
+//                         children: [
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                         ],
+//                       )
+//                     : Column(
+//                         children: newsController.newsForYou5
+//                             .map(
+//                               (e) => NewsTile(
+//                                 ontap: () {
+//                                   Get.to(NewsDetailsPage(news: e));
+//                                 },
+//                                 imageUrl: e.urlToImage ??
+//                                     "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                                 title: e.title!,
+//                                 author: e.author ?? "Unknown",
+//                                 time: e.publishedAt!,
+//                               ),
+//                             )
+//                             .toList(),
+//                       ),
+//               ),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Tesla News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                 () => newsController.isTeslaLoading.value
+//                     ? Column(
+//                         children: [
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                         ],
+//                       )
+//                     : Column(
+//                         children: newsController.tesla5News
+//                             .map(
+//                               (e) => NewsTile(
+//                                 ontap: () {
+//                                   Get.to(NewsDetailsPage(news: e));
+//                                 },
+//                                 imageUrl: e.urlToImage ??
+//                                     "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                                 title: e.title!,
+//                                 author: e.author ?? "Unknown",
+//                                 time: e.publishedAt!,
+//                               ),
+//                             )
+//                             .toList(),
+//                       ),
+//               ),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Apple News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: Obx(
+//                     () => newsController.isAppleLoading.value
+//                         ? const Row(
+//                             children: [
+//                               TrandingLoadingCard(),
+//                               TrandingLoadingCard(),
+//                             ],
+//                           )
+//                         : Row(
+//                             children: newsController.apple5News
+//                                 .map(
+//                                   (e) => TrandingCard(
+//                                     ontap: () {
+//                                       Get.to(NewsDetailsPage(
+//                                         news: e,
+//                                       ));
+//                                     },
+//                                     imageUrl: e.urlToImage!,
+//                                     title: e.title!,
+//                                     author: e.author ?? "Unknown",
+//                                     tag: "Trending no 1",
+//                                     time: e.publishedAt!,
+//                                   ),
+//                                 )
+//                                 .toList(),
+//                           ),
+//                   )),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Business News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                 () => newsController.isBoolLoading.value
+//                     ? Column(
+//                         children: [
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                           NewsTileLoading(),
+//                         ],
+//                       )
+//                     : Column(
+//                         children: newsController.business5News
+//                             .map(
+//                               (e) => NewsTile(
+//                                 ontap: () {
+//                                   Get.to(NewsDetailsPage(news: e));
+//                                 },
+//                                 imageUrl: e.urlToImage ??
+//                                     "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                                 title: e.title!,
+//                                 author: e.author ?? "Unknown",
+//                                 time: e.publishedAt!,
+//                               ),
+//                             )
+//                             .toList(),
+//                       ),
+//               ),
+//               const SizedBox(height: 20),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+//
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:news_app/Components/NewsTileLoading.dart';
+// import 'package:news_app/Components/TrandingLoadingCard.dart';
+//
+// import '../../controller/news_controller.dart';
+// import '../NewsDetails/news_details.dart';
+// import 'Widgets/TrandingCard.dart';
+// import 'Widgets/news_tile.dart';
+//
+//
+// class HomePage extends StatelessWidget {
+//   const HomePage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     NewsController newsController = Get.put(NewsController());
+//     return Scaffold(
+//       body: Padding(
+//         padding: const EdgeInsets.all(10),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: [
+//               const SizedBox(height: 40),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Container(
+//                     width: 50,
+//                     height: 50,
+//                     decoration: BoxDecoration(
+//                       color: Theme.of(context).colorScheme.primaryContainer,
+//                       borderRadius: BorderRadius.circular(100),
+//                     ),
+//                     child: const Icon(Icons.dashboard),
+//                   ),
+//                   const Text(
+//                     "NEWS APP",
+//                     style: TextStyle(
+//                       fontSize: 25,
+//                       fontFamily: "Poppins",
+//                       fontWeight: FontWeight.w600,
+//                       letterSpacing: 1.5,
+//                     ),
+//                   ),
+//                   InkWell(
+//                     onTap: () {},
+//                     child: Container(
+//                       width: 50,
+//                       height: 50,
+//                       decoration: BoxDecoration(
+//                         color: Theme.of(context).colorScheme.primaryContainer,
+//                         borderRadius: BorderRadius.circular(100),
+//                       ),
+//                       child: const Icon(Icons.person),
+//                     ),
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 40),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Hottest News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: Obx(
+//                         () => newsController.isTrandingLoading.value
+//                         ? const Row(
+//                       children: [
+//                         TrandingLoadingCard(),
+//                         TrandingLoadingCard(),
+//                       ],
+//                     )
+//                         : Row(
+//                       children: newsController.trandingNewsList
+//                           .map(
+//                             (e) => TrandingCard(
+//                           ontap: () {
+//                             Get.to(NewsDetailsPage(
+//                               news: e,
+//                             ));
+//                           },
+//                           imageUrl: e.urlToImage!,
+//                           title: e.title!,
+//                           author: e.author ?? "Unknown",
+//                           tag: "Tranding no 1",
+//                           time: e.publishedAt!,
+//                         ),
+//                       )
+//                           .toList(),
+//                     ),
+//                   )),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "News For you",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                     () => newsController.isNewsForULoading.value
+//                     ? Column(
+//                   children: [
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                   ],
+//                 )
+//                     : Column(
+//                   children: newsController.newsForYou5
+//                       .map(
+//                         (e) => NewsTile(
+//                       ontap: () {
+//                         Get.to(NewsDetailsPage(news: e));
+//                       },
+//                       imageUrl: e.urlToImage ??
+//                           "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                       title: e.title!,
+//                       author: e.author ?? "Unknown",
+//                       time: e.publishedAt!,
+//                     ),
+//                   )
+//                       .toList(),
+//                 ),
+//               ),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Tesla News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                     () => newsController.isTeslaLoading.value
+//                     ? Column(
+//                   children: [
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                   ],
+//                 )
+//                     : Column(
+//                   children: newsController.tesla5News
+//                       .map(
+//                         (e) => NewsTile(
+//                       ontap: () {
+//                         Get.to(NewsDetailsPage(news: e));
+//                       },
+//                       imageUrl: e.urlToImage ??
+//                           "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                       title: e.title!,
+//                       author: e.author ?? "Unknown",
+//                       time: e.publishedAt!,
+//                     ),
+//                   )
+//                       .toList(),
+//                 ),
+//               ),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Apple News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               SingleChildScrollView(
+//                   scrollDirection: Axis.horizontal,
+//                   child: Obx(
+//                         () => newsController.isAppleLoading.value
+//                         ? const Row(
+//                       children: [
+//                         TrandingLoadingCard(),
+//                         TrandingLoadingCard(),
+//                       ],
+//                     )
+//                         : Row(
+//                       children: newsController.apple5News
+//                           .map(
+//                             (e) => TrandingCard(
+//                           ontap: () {
+//                             Get.to(NewsDetailsPage(
+//                               news: e,
+//                             ));
+//                           },
+//                           imageUrl: e.urlToImage!,
+//                           title: e.title!,
+//                           author: e.author ?? "Unknown",
+//                           tag: "Tranding no 1",
+//                           time: e.publishedAt!,
+//                         ),
+//                       )
+//                           .toList(),
+//                     ),
+//                   )),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     "Business News",
+//                     style: Theme.of(context).textTheme.bodyLarge,
+//                   ),
+//                   Text(
+//                     "See All",
+//                     style: Theme.of(context).textTheme.labelSmall,
+//                   )
+//                 ],
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                     () => newsController.isBoolLoading.value
+//                     ? Column(
+//                   children: [
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                     NewsTileLoading(),
+//                   ],
+//                 )
+//                     : Column(
+//                   children: newsController.business5News
+//                       .map(
+//                         (e) => NewsTile(
+//                       ontap: () {
+//                         Get.to(NewsDetailsPage(news: e));
+//                       },
+//                       imageUrl: e.urlToImage ??
+//                           "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+//                       title: e.title!,
+//                       author: e.author ?? "Unknown",
+//                       time: e.publishedAt!,
+//                     ),
+//                   )
+//                       .toList(),
+//                 ),
+//               ),
+//               const SizedBox(height: 20),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+//nitish's
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app/Components/NewsTileLoading.dart';
 import 'package:news_app/Components/TrandingLoadingCard.dart';
 
-import 'package:news_app/Pages/HomePage/Widgets/TrandingCard.dart';
-import 'package:news_app/Pages/Profile/profile_page.dart';
-import 'package:news_app/controller/news_controller.dart';
 
+import '../../controller/news_controller.dart';
 import '../NewsDetails/news_details.dart';
+import 'Widgets/TrandingCard.dart';
 import 'Widgets/news_tile.dart';
 
 class HomePage extends StatelessWidget {
@@ -24,10 +592,17 @@ class HomePage extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
-                  SizedBox(width: 100,),
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(Icons.dashboard),
+                  ),
                   const Text(
                     "HeadLineHub",
                     style: TextStyle(
@@ -37,25 +612,17 @@ class HomePage extends StatelessWidget {
                       letterSpacing: 1.5,
                     ),
                   ),
-
-                const   SizedBox(width: 50),
                   InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ProfilePage()));
-
-                 Get.toNamed('/profile');
-                    },
+                    onTap: () {},
                     child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: const Icon(Icons.person)),
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: const Icon(Icons.person),
+                    ),
                   )
                 ],
               ),
@@ -77,30 +644,31 @@ class HomePage extends StatelessWidget {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Obx(
-                    () => newsController.isTrandingLoading.value
+                        () => newsController.isTrandingLoading.value
                         ? const Row(
-                            children: [
-                              TrandingLoadingCard(),
-                            ],
-                          )
+                      children: [
+                        TrandingLoadingCard(),
+                        TrandingLoadingCard(),
+                      ],
+                    )
                         : Row(
-                            children: newsController.trandingNewsList
-                                .map(
-                                  (e) => TrandingCard(
-                                    ontap: () {
-                                      Get.to(NewsDetailsPage(
-                                        news: e,
-                                      ));
-                                    },
-                                    imageUrl: e.urlToImage!,
-                                    title: e.title!,
-                                    author: e.author ?? "Unknown",
-                                    tag: "Trending no 1",
-                                    time: e.publishedAt!,
-                                  ),
-                                )
-                                .toList(),
-                          ),
+                      children: newsController.trandingNewsList
+                          .map(
+                            (e) => TrandingCard(
+                          ontap: () {
+                            Get.to(NewsDetailsPage(
+                              news: e,
+                            ));
+                          },
+                          imageUrl: e.urlToImage!,
+                          title: e.title!,
+                          author: e.author ?? "Unknown",
+                          tag: "Tranding no 1",
+                          time: e.publishedAt!,
+                        ),
+                      )
+                          .toList(),
+                    ),
                   )),
               const SizedBox(height: 20),
               Row(
@@ -118,30 +686,30 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Obx(
-                () => newsController.isNewsForULoading.value
+                    () => newsController.isNewsForULoading.value
                     ? Column(
-                        children: [
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                        ],
-                      )
+                  children: [
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                  ],
+                )
                     : Column(
-                        children: newsController.newsForYou5
-                            .map(
-                              (e) => NewsTile(
-                                ontap: () {
-                                  Get.to(NewsDetailsPage(news: e));
-                                },
-                                imageUrl: e.urlToImage ??
-                                    "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
-                                title: e.title!,
-                                author: e.author ?? "Unknown",
-                                time: e.publishedAt!,
-                              ),
-                            )
-                            .toList(),
-                      ),
+                  children: newsController.newsForYou5
+                      .map(
+                        (e) => NewsTile(
+                      ontap: () {
+                        Get.to(NewsDetailsPage(news: e));
+                      },
+                      imageUrl: e.urlToImage ??
+                          "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+                      title: e.title!,
+                      author: e.author ?? "Unknown",
+                      time: e.publishedAt!,
+                    ),
+                  )
+                      .toList(),
+                ),
               ),
               const SizedBox(height: 20),
               Row(
@@ -159,30 +727,30 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Obx(
-                () => newsController.isTeslaLoading.value
+                    () => newsController.isTeslaLoading.value
                     ? Column(
-                        children: [
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                        ],
-                      )
+                  children: [
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                  ],
+                )
                     : Column(
-                        children: newsController.tesla5News
-                            .map(
-                              (e) => NewsTile(
-                                ontap: () {
-                                  Get.to(NewsDetailsPage(news: e));
-                                },
-                                imageUrl: e.urlToImage ??
-                                    "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
-                                title: e.title!,
-                                author: e.author ?? "Unknown",
-                                time: e.publishedAt!,
-                              ),
-                            )
-                            .toList(),
-                      ),
+                  children: newsController.tesla5News
+                      .map(
+                        (e) => NewsTile(
+                      ontap: () {
+                        Get.to(NewsDetailsPage(news: e));
+                      },
+                      imageUrl: e.urlToImage ??
+                          "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+                      title: e.title!,
+                      author: e.author ?? "Unknown",
+                      time: e.publishedAt!,
+                    ),
+                  )
+                      .toList(),
+                ),
               ),
               const SizedBox(height: 20),
               Row(
@@ -202,31 +770,31 @@ class HomePage extends StatelessWidget {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Obx(
-                    () => newsController.isAppleLoading.value
+                        () => newsController.isAppleLoading.value
                         ? const Row(
-                            children: [
-                              TrandingLoadingCard(),
-                              TrandingLoadingCard(),
-                            ],
-                          )
+                      children: [
+                        TrandingLoadingCard(),
+                        TrandingLoadingCard(),
+                      ],
+                    )
                         : Row(
-                            children: newsController.apple5News
-                                .map(
-                                  (e) => TrandingCard(
-                                    ontap: () {
-                                      Get.to(NewsDetailsPage(
-                                        news: e,
-                                      ));
-                                    },
-                                    imageUrl: e.urlToImage!,
-                                    title: e.title!,
-                                    author: e.author ?? "Unknown",
-                                    tag: "Tranding no 1",
-                                    time: e.publishedAt!,
-                                  ),
-                                )
-                                .toList(),
-                          ),
+                      children: newsController.apple5News
+                          .map(
+                            (e) => TrandingCard(
+                          ontap: () {
+                            Get.to(NewsDetailsPage(
+                              news: e,
+                            ));
+                          },
+                          imageUrl: e.urlToImage!,
+                          title: e.title!,
+                          author: e.author ?? "Unknown",
+                          tag: "Tranding no 1",
+                          time: e.publishedAt!,
+                        ),
+                      )
+                          .toList(),
+                    ),
                   )),
               const SizedBox(height: 20),
               Row(
@@ -244,30 +812,30 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Obx(
-                () => newsController.isBoolLoading.value
+                    () => newsController.isBoolLoading.value
                     ? Column(
-                        children: [
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                          NewsTileLoading(),
-                        ],
-                      )
+                  children: [
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                    NewsTileLoading(),
+                  ],
+                )
                     : Column(
-                        children: newsController.business5News
-                            .map(
-                              (e) => NewsTile(
-                                ontap: () {
-                                  Get.to(NewsDetailsPage(news: e));
-                                },
-                                imageUrl: e.urlToImage ??
-                                    "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
-                                title: e.title!,
-                                author: e.author ?? "Unknown",
-                                time: e.publishedAt!,
-                              ),
-                            )
-                            .toList(),
-                      ),
+                  children: newsController.business5News
+                      .map(
+                        (e) => NewsTile(
+                      ontap: () {
+                        Get.to(NewsDetailsPage(news: e));
+                      },
+                      imageUrl: e.urlToImage ??
+                          "https://static.toiimg.com/thumb/msid-46918916,width=1200,height=900/46918916.jpg",
+                      title: e.title!,
+                      author: e.author ?? "Unknown",
+                      time: e.publishedAt!,
+                    ),
+                  )
+                      .toList(),
+                ),
               ),
               const SizedBox(height: 20),
             ],

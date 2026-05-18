@@ -73,6 +73,7 @@ class NewsDetailsPage extends StatelessWidget {
                     Text(
                       "${news.author} * ${news.publishedAt}",
                       style: Theme.of(context).textTheme.labelSmall,
+                      overflow: TextOverflow.ellipsis,
                     )
                   ],
                 ),

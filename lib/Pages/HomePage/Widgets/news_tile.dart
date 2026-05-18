@@ -52,6 +52,7 @@ class NewsTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CircleAvatar(
+                      child: Text(author[0],),
                         radius: 10,
                         backgroundColor: Theme.of(context).colorScheme.primary,
                       ),
@@ -60,6 +61,7 @@ class NewsTile extends StatelessWidget {
                           child: Text(
                             author,
                             maxLines: 1,
+
                           ))
                     ],
                   ),
