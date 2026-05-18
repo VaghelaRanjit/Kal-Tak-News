@@ -28,6 +28,9 @@ A modern Flutter News Application built using GetX and News API.
 
 <img width="300" height="650" alt="SearchNews" src="https://github.com/user-attachments/assets/f8ccdf8b-0c51-4210-8f2d-fba6e7313553" />
 
+<img width="300" height="650" alt="profile" src="https://github.com/user-attachments/assets/6a3c935e-9d8f-4610-99fe-2096c600b7ea" />
+
+
 <img width="300" height="650" alt="SettingsPage" src="https://github.com/user-attachments/assets/3dd184ed-acb1-4f1e-b003-496de2bdbc60" />
 
 
